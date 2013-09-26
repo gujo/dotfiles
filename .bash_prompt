@@ -1,0 +1,44 @@
+#!/bin/bash
+
+if tput setaf 1 &> /dev/null; then
+    tput sgr0
+    if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
+	GREEN=$(tput setaf 190)
+	WHITE=$(tput setaf 0)
+    else
+	GREEN=$(tput setaf 2)
+	WHITE=$(tput setaf 7)
+    fi
+    BOLD=$(tput bold)
+    RESET=$(tput sgr0)
+else
+    GREEN="\033[1;32m"
+    WHITE="\033[1;37m"
+    BOLD=""
+    RESET="\033[m"
+fi
+
+export GREEN
+export WHITE
+export BOLD
+export RESET
+
+# functions to get git status
+
+parse_git_branch () {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+parse_git_tag () {
+    git describe --tags 2> /dev/null
+}
+
+parse_git_branch_or_tag() {
+    local OUT="$(parse_git_branch)"
+    if [ "$OUT" == " ((no branch))" ]; then
+	OUT="($(parse_git_tag))";
+    fi
+    echo $OUT
+}
+
+export PS1="[\u@\h \W]${BOLD}\$(parse_git_branch_or_tag)${RESET}${GREEN}$ ${RESET}"
