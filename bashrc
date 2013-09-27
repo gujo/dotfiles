@@ -116,4 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export PATH=$PATH:~/bin:/usr/local/homebrew/bin
+
 source ~/.bash_prompt
