@@ -1,27 +1,18 @@
 #!/bin/bash
 
-if tput setaf 1 &> /dev/null; then
-    tput sgr0
-    if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-	GREEN=$(tput setaf 190)
-	WHITE=$(tput setaf 0)
-    else
-	GREEN=$(tput setaf 2)
-	WHITE=$(tput setaf 7)
-    fi
-    BOLD=$(tput bold)
-    RESET=$(tput sgr0)
-else
-    GREEN="\033[1;32m"
-    WHITE="\033[1;37m"
-    BOLD=""
-    RESET="\033[m"
-fi
+# escape our pants off so that colorized prompts wont break line breaking
+GREEN="\[\e[32m\]"
+WHITE="\[\e[1;37m\]"
+BOLD="\[\e[1m\]"
+RED="\[\e[1;31m\]"
+RESET="\[\e[m\]"
 
 export GREEN
 export WHITE
 export BOLD
 export RESET
+
+# Constants
 
 # functions to get git status
 
@@ -41,4 +32,10 @@ parse_git_branch_or_tag() {
     echo $OUT
 }
 
-export PS1="[\u@\h \W]${BOLD}\$(parse_git_branch_or_tag)${RESET}${GREEN}$ ${RESET}"
+# dont display user@host if local user at localhost
+
+if [ $SSH_TTY ]; then
+    export PS1="[\u@\h \W]${BOLD}\$(parse_git_branch_or_tag)${RESET}${GREEN}$ ${RESET}"
+else
+    export PS1="[\w]${BOLD}\$(parse_git_branch_or_tag)${RESET}${GREEN}$ ${RESET}"
+fi
