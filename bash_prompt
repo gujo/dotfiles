@@ -37,5 +37,5 @@ parse_git_branch_or_tag() {
 if [ $SSH_TTY ]; then
     export PS1="[\u@\h \W]${BOLD}\$(parse_git_branch_or_tag)${RESET}${GREEN}$ ${RESET}"
 else
-    export PS1="[\w]${BOLD}\$(parse_git_branch_or_tag)${RESET}${GREEN}$ ${RESET}"
+    export PS1="[\W]${BOLD}\$(parse_git_branch_or_tag)${RESET}${GREEN}$ ${RESET}"
 fi

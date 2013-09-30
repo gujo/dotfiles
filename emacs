@@ -1,6 +1,6 @@
 (setq column-number-mode t)
 (setq tab-width 4)
-(set-scroll-bar-mode 'right)
+;;(set-scroll-bar-mode 'right)
 
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
