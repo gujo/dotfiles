@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILES="emacs bash_profile bash_prompt bashrc tmux.conf"
+FILES="emacs bash_profile bash_prompt bashrc bash_aliases tmux.conf"
 
 # back up old config files and replace with symlinks to dotfiles dir
 mkdir -p ~/.dotfiles_backup
