@@ -3,7 +3,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-if [[ OSTYPE == darwin* ]]; then
+if [[ $OSTYPE == darwin* ]]; then
     alias ls='ls -G'
 else
     alias ls='ls --color'
