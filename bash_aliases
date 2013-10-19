@@ -2,7 +2,12 @@
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias ls='ls -G'
+
+if [[ $OSTYPE == darwin* ]]; then
+    alias ls='ls -G'
+else
+    alias ls='ls --color'
+fi
 
 
 # Add an "alert" alias for long running commands.  Use like so:
