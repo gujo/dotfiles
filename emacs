@@ -2,12 +2,13 @@
 (setq tab-width 4)
 ;;(set-scroll-bar-mode 'right)
 
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
 (defvaralias 'cpython-indent-level 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
+
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 ;; yaml-mode
 (require 'yaml-mode)
@@ -16,6 +17,19 @@
 (add-hook 'yaml-mode-hook
 	  '(lambda ()
 	     (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+;; markdown-mode
+(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+
+
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
   backup-by-copying t    ; Don't delink hardlinks
