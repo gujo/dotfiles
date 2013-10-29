@@ -1,0 +1,61 @@
+# Change prefix key
+set-option -g prefix C-v
+bind-key C-v send-prefix
+
+# Start windows at 1
+set-option -g base-index 1
+
+# Fn-key bindings
+bind-key -n F1 select-window -t 1
+bind-key -n F2 select-window -t 2
+bind-key -n F3 select-window -t 3
+bind-key -n F4 select-window -t 4
+bind-key -n F5 select-window -t 5
+bind-key -n F6 select-window -t 6
+bind-key -n F7 select-window -t 7
+bind-key -n F8 select-window -t 8
+bind-key -n F9 select-window -t 9
+bind-key -n F10 select-window -t 10
+bind-key -n F11 select-window -t 11
+bind-key -n F12 select-window -t 12
+
+bind k confirm kill-window
+
+# Colours
+set-option -g message-bg blue
+set-option -g message-fg red
+set-option -g pane-active-border-fg blue
+
+# Mimics screen C-a C-a behaviour
+bind-key C-v last-window
+bind-key a send-key C-v
+
+# Status bar
+set-option -g status-bg blue
+set-option -g status-fg white
+set-option -g window-status-alert-bg red
+set-option -g window-status-current-attr bold
+set-option -g window-status-format ' #W '
+set-option -g window-status-current-format '[#W]'
+set-option -g window-status-current-bg '#0000FF'
+set-option -g status-left "#(hostname -s):#S"
+set-option -g status-right ""
+
+# use "D" and "d" to do vertical/horizontal splits, like iterm2
+bind D split-window -v
+bind d split-window -h
+
+# use the vim motion keys to move between panes
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# use vim motion keys while in copy mode
+setw -g mode-keys vi
+# use the vim resize keys.
+bind < resize-pane -L 8
+bind > resize-pane -R 8
+bind + resize-pane -D 8
+bind - resize-pane -U 8
+
