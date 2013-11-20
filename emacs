@@ -21,14 +21,15 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp/color-theme/")
 (require 'color-theme)
-
-(add-to-list 'load-path "~/.emacs.d/lisp/emacs-color-theme-solarized/")
-(require 'color-theme-solarized)
-
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (color-theme-solarized-dark)))
+     (color-theme-tm)))
+
+
+;;(add-to-list 'load-path "~/.emacs.d/lisp/emacs-color-theme-solarized/")
+;;(require 'color-theme-solarized)
+
 
 ;; markdown-mode
 (autoload 'markdown-mode "markdown-mode"
