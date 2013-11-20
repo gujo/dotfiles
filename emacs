@@ -18,7 +18,17 @@
 	  '(lambda ()
 	     (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+
+(add-to-list 'load-path "~/.emacs.d/lisp/color-theme/")
+(require 'color-theme)
+
+(add-to-list 'load-path "~/.emacs.d/lisp/emacs-color-theme-solarized/")
+(require 'color-theme-solarized)
+
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-solarized-dark)))
 
 ;; markdown-mode
 (autoload 'markdown-mode "markdown-mode"
@@ -28,6 +38,7 @@
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+
 
 
 
