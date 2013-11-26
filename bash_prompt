@@ -15,6 +15,7 @@ export RESET
 # Constants
 
 # functions to get git status
+# from https://github.com/twolfson/sexy-bash-prompt
 
 function get_git_branch() {
   # On branches, this will return the branch name
@@ -22,8 +23,6 @@ function get_git_branch() {
   REF="$(git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///')"
   if [[ $REF != "" ]]; then
     echo $REF
-  else
-    echo "(no branch)"
   fi
 }
 
@@ -143,13 +142,10 @@ get_git_info () {
     OUTPUT=$OUTPUT"$(get_git_status)"
 
     # Echo our output
-    echo $OUTPUT
+    echo $OUTPUT" "
   fi
 }
  
-
-
-
 # dont display user@host if local user at localhost
 
 if [ $SSH_TTY ]; then
