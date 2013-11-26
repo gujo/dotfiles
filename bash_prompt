@@ -16,15 +16,17 @@ export RESET
 
 # functions to get git status
 
-parse_git_branch () {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+function get_git_branch() {
+  # On branches, this will return the branch name
+  # On non-branches, (no branch)
+  REF="$(git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///')"
+  if [[ $REF != "" ]]; then
+    echo $REF
+  else
+    echo "(no branch)"
+  fi
 }
 
-parse_git_tag () {
-    git describe --tags 2> /dev/null
-}
-
-# Git status signs borrowed from https://github.com/twolfson/sexy-bash-prompt
 is_branch1_behind_branch2 () {
   # $ git log origin/master..master -1
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
@@ -34,21 +36,21 @@ is_branch1_behind_branch2 () {
   #     Unsynced commit
 
   # Find the first log (if any) that is in branch1 but not branch2
-    FIRST_LOG="$(git log $1..$2 -1 2> /dev/null)"
+  FIRST_LOG="$(git log $1..$2 -1 2> /dev/null)"
 
   # Exit with 0 if there is a first log, 1 if there is not
-    [[ -n $FIRST_LOG ]]
+  [[ -n $FIRST_LOG ]]
 }
 
 branch_exists () {
   # List remote branches           | # Find our branch and exit with 0 or 1 if found/not found
-    git branch --remote 2> /dev/null | grep --quiet "$1"
+  git branch --remote 2> /dev/null | grep --quiet "$1"
 }
 
 parse_git_ahead () {
   # Grab the local and remote branch
-    BRANCH="$(parse_git_branch)"
-    REMOTE_BRANCH=origin/"$BRANCH"
+  BRANCH="$(get_git_branch)"
+  REMOTE_BRANCH=origin/"$BRANCH"
 
   # $ git log origin/master..master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
@@ -59,17 +61,17 @@ parse_git_ahead () {
 
   # If the remote branch is behind the local branch
   # or it has not been merged into origin (remote branch doesn't exist)
-    if (is_branch1_behind_branch2 "$REMOTE_BRANCH" "$BRANCH" ||
-	    ! branch_exists "$REMOTE_BRANCH"); then
+  if (is_branch1_behind_branch2 "$REMOTE_BRANCH" "$BRANCH" ||
+      ! branch_exists "$REMOTE_BRANCH"); then
     # echo our character
-	echo 1
-    fi
+    echo 1
+  fi
 }
 
 parse_git_behind () {
   # Grab the branch
-    BRANCH="$(parse_git_branch)"
-    REMOTE_BRANCH=origin/"$BRANCH"
+  BRANCH="$(get_git_branch)"
+  REMOTE_BRANCH=origin/"$BRANCH"
 
   # $ git log master..origin/master
   # commit 4a633f715caf26f6e9495198f89bba20f3402a32
@@ -79,10 +81,10 @@ parse_git_behind () {
   #     Unsynced commit
 
   # If the local branch is behind the remote branch
-    if is_branch1_behind_branch2 "$BRANCH" "$REMOTE_BRANCH"; then
+  if is_branch1_behind_branch2 "$BRANCH" "$REMOTE_BRANCH"; then
     # echo our character
-	echo 1
-    fi
+    echo 1
+  fi
 }
 
 parse_git_dirty () {
@@ -94,53 +96,64 @@ parse_git_dirty () {
   # D  file.txt # Staged deleted files
 
   # If the git status has *any* changes (i.e. dirty)
-    if [[ -n "$(git status --porcelain 2> /dev/null)" ]]; then
+  if [[ -n "$(git status --porcelain 2> /dev/null)" ]]; then
     # echo our character
-	echo 1
-    fi
+    echo 1
+  fi
 }
 
-parse_git_status () {
+function is_on_git() {
+  git rev-parse 2> /dev/null
+}
+
+function get_git_status() {
   # Grab the git dirty and git behind
-    DIRTY_BRANCH="$(parse_git_dirty)"
-    BRANCH_AHEAD="$(parse_git_ahead)"
-    BRANCH_BEHIND="$(parse_git_behind)"
+  DIRTY_BRANCH="$(parse_git_dirty)"
+  BRANCH_AHEAD="$(parse_git_ahead)"
+  BRANCH_BEHIND="$(parse_git_behind)"
 
   # Iterate through all the cases and if it matches, then echo
-    if [[ $DIRTY_BRANCH == 1 && $BRANCH_AHEAD == 1 && $BRANCH_BEHIND == 1 ]]; then
-	echo "⬢"
-    elif [[ $DIRTY_BRANCH == 1 && $BRANCH_AHEAD == 1 ]]; then
-	echo "▲"
-    elif [[ $DIRTY_BRANCH == 1 && $BRANCH_BEHIND == 1 ]]; then
-	echo "▼"
-    elif [[ $BRANCH_AHEAD == 1 && $BRANCH_BEHIND == 1 ]]; then
-	echo "⬡"
-    elif [[ $BRANCH_AHEAD == 1 ]]; then
-	echo "△"
-    elif [[ $BRANCH_BEHIND == 1 ]]; then
-	echo "▽"
-    elif [[ $DIRTY_BRANCH == 1 ]]; then
-	echo "*"
-    fi
+  if [[ $DIRTY_BRANCH == 1 && $BRANCH_AHEAD == 1 && $BRANCH_BEHIND == 1 ]]; then
+    echo "⬢"
+  elif [[ $DIRTY_BRANCH == 1 && $BRANCH_AHEAD == 1 ]]; then
+    echo "▲"
+  elif [[ $DIRTY_BRANCH == 1 && $BRANCH_BEHIND == 1 ]]; then
+    echo "▼"
+  elif [[ $BRANCH_AHEAD == 1 && $BRANCH_BEHIND == 1 ]]; then
+    echo "⬡"
+  elif [[ $BRANCH_AHEAD == 1 ]]; then
+    echo "△"
+  elif [[ $BRANCH_BEHIND == 1 ]]; then
+    echo "▽"
+  elif [[ $DIRTY_BRANCH == 1 ]]; then
+    echo "*"
+  fi
 }
 
-parse_git_branch_or_tag() {
-    local OUT="$(parse_git_branch)"
-    if [ "$OUT" == " ((no branch))" ]; then
-	OUT="($(parse_git_tag))";
-    fi
+get_git_info () {
+  # Grab the branch
+  BRANCH="$(get_git_branch)"
 
-    STATUS="$(parse_git_status)"
-    
-    if [[ ! -z $OUT ]]; then
-	echo $OUT$STATUS" "
-    fi
+  # If there are any branches
+  if [[ $BRANCH != "" ]]; then
+    # Echo the branch
+    OUTPUT=$BRANCH
+
+    # Add on the git status
+    OUTPUT=$OUTPUT"$(get_git_status)"
+
+    # Echo our output
+    echo $OUTPUT
+  fi
 }
+ 
+
+
 
 # dont display user@host if local user at localhost
 
 if [ $SSH_TTY ]; then
-    export PS1="[\u@\h \W]${BOLD}\$(parse_git_branch_or_tag)${RESET}${GREEN}$ ${RESET}"
+    export PS1="[\u@\h \W]${BOLD}\$(get_git_info)${RESET}${GREEN}$ ${RESET}"
 else
-    export PS1="[\W]${BOLD}\$(parse_git_branch_or_tag)${RESET}${GREEN}$ ${RESET}"
+    export PS1="[\W]${BOLD}\$(get_git_info)${RESET}${GREEN}$ ${RESET}"
 fi
