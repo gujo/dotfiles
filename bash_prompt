@@ -1,4 +1,4 @@
-B#!/bin/bash
+#!/bin/bash
 
 # escape our pants off so that colorized prompts wont break line breaking
 GREEN="\[\e[32m\]"
