@@ -1,4 +1,4 @@
-#!/bin/bash
+B#!/bin/bash
 
 # escape our pants off so that colorized prompts wont break line breaking
 GREEN="\[\e[32m\]"
@@ -60,8 +60,9 @@ parse_git_ahead () {
 
   # If the remote branch is behind the local branch
   # or it has not been merged into origin (remote branch doesn't exist)
-  if (is_branch1_behind_branch2 "$REMOTE_BRANCH" "$BRANCH" ||
-      ! branch_exists "$REMOTE_BRANCH"); then
+  if (is_branch1_behind_branch2 "$REMOTE_BRANCH" "$BRANCH"); then
+#  if (is_branch1_behind_branch2 "$REMOTE_BRANCH" "$BRANCH" ||
+#      ! branch_exists "$REMOTE_BRANCH"); then
     # echo our character
     echo 1
   fi
