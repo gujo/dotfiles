@@ -2,6 +2,7 @@
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias less='less -r'
 
 if [[ $OSTYPE == darwin* ]]; then
     alias ls='ls -G'
