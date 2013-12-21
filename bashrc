@@ -17,6 +17,7 @@ HISTFILESIZE=2000
 
 # put timestamp in bash history
 HISTTIMEFORMAT="%F %T "
+HISTIGNORE="clear:bg:fg:cd:cd -:exit:date:w:* --help"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -62,4 +63,5 @@ export LSCOLORS=ExGxcxdxCxegedabagacad
 export EDITOR=emacs
 export PATH=$PATH:~/bin:/usr/local/homebrew/bin:/usr/local/homebrew/share/npm/bin
 
+# prompt settings in separate file
 source ~/.bash_prompt
