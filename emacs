@@ -2,6 +2,7 @@
 (setq tab-width 4)
 ;;(set-scroll-bar-mode 'right)
 (setq fringe-mode 0)
+(menu-bar-mode -1)
 
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
