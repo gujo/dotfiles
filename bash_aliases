@@ -3,11 +3,16 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias less='less -r'
+
 alias vp='vagrant provision'
 alias vu='vagrant up'
 alias vs='vagrant ssh'
 alias vd='vagrant destroy'
 alias vreset='vagrant destroy -f && vagrant up'
+
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
 
 if [[ $OSTYPE == darwin* ]]; then
     alias ls='ls -G'
