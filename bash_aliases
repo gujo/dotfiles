@@ -13,6 +13,7 @@ alias vreset='vagrant destroy -f && vagrant up'
 alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
+alias gs='git status'
 
 if [[ $OSTYPE == darwin* ]]; then
     alias ls='ls -G'
