@@ -14,6 +14,11 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 alias gs='git status'
+alias gd='dit diff --color'
+
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 if [[ $OSTYPE == darwin* ]]; then
     alias ls='ls -G'
