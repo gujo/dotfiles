@@ -4,6 +4,11 @@ alias la='ls -A'
 alias l='ls -CF'
 alias less='less -r'
 
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd .. && cd ..'
+alias ....='cd .. && cd .. && cd ..'
+
 alias vp='vagrant provision'
 alias vu='vagrant up'
 alias vs='vagrant ssh'
