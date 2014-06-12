@@ -19,7 +19,7 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 alias gs='git status'
-alias gd='dit diff --color'
+alias gd='git diff --color'
 alias gpull='git pull'
 
 alias grep='grep --color=auto'
