@@ -4,6 +4,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias less='less -r'
 
+alias c='cd'
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd .. && cd ..'
