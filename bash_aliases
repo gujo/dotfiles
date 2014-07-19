@@ -23,6 +23,7 @@ alias gc='git commit'
 alias gp='git push'
 alias gs='git status'
 alias gd='git diff --color'
+alias gl='git log'
 alias gpull='git pull'
 
 alias grep='grep --color=auto'
