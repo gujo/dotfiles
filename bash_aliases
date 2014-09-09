@@ -4,7 +4,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias less='less -r'
 
-alias= em='emacs'
+alias e='emacs'
 
 alias c='cd'
 alias cd..='cd ..'
