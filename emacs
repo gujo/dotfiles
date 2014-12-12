@@ -21,6 +21,8 @@
 	     (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
 
+(require 'puppet-mode)
+
 (add-to-list 'load-path "~/.emacs.d/lisp/color-theme/")
 (require 'color-theme)
 (eval-after-load "color-theme"
@@ -31,6 +33,10 @@
 
 ;;(add-to-list 'load-path "~/.emacs.d/lisp/emacs-color-theme-solarized/")
 ;;(require 'color-theme-solarized)
+
+(add-to-list 'load-path "~/.emacs/lisp/dockerfile-mode.el")
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 
 ;; markdown-mode
