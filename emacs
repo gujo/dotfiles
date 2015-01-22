@@ -22,6 +22,8 @@
 
 
 (require 'puppet-mode)
+(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
+
 
 (add-to-list 'load-path "~/.emacs.d/lisp/color-theme/")
 (require 'color-theme)
@@ -29,7 +31,6 @@
   '(progn
      (color-theme-initialize)
      (color-theme-tm)))
-
 
 ;;(add-to-list 'load-path "~/.emacs.d/lisp/emacs-color-theme-solarized/")
 ;;(require 'color-theme-solarized)
