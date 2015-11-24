@@ -24,6 +24,7 @@ alias gp='git push'
 alias gs='git status'
 alias gd='git diff --color'
 alias gl='git log'
+alias gb='bit branch'
 alias gpull='git pull'
 
 alias grep='grep --color=auto'
