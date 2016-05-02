@@ -65,8 +65,8 @@ export PATH=$PATH:~/bin:/usr/local/homebrew/bin:/usr/local/homebrew/share/npm/bi
 
 # docker stuff
 
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
+export DOCKER_HOST=tcp://192.168.99.100:2376
+export DOCKER_CERT_PATH=$HOME/.docker/machine/certs/
 export DOCKER_TLS_VERIFY=1
 
 export ANSIBLE_NOCOWS=1
