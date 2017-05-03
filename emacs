@@ -24,6 +24,9 @@
 (require 'puppet-mode)
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
+(require 'jinja2-mode)
+(add-to-list 'auto-mode-alist '("\\.j2$" . jinja2-mode))
+
 
 (add-to-list 'load-path "~/.emacs.d/lisp/color-theme/")
 (require 'color-theme)

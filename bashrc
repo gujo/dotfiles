@@ -63,6 +63,8 @@ export LSCOLORS=ExGxcxdxCxegedabagacad
 export EDITOR=emacs
 export PATH=$PATH:~/bin:/usr/local/homebrew/bin:/usr/local/homebrew/share/npm/bin
 
+export ANSIBLE_NOCOWS=1
+
 # prompt settings in separate file
 source ~/.bash_prompt
 
