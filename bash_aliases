@@ -27,6 +27,9 @@ alias gl='git log'
 alias gb='bit branch'
 alias gpull='git pull'
 
+alias k='kubectl'
+alias g='gcloud'
+
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
