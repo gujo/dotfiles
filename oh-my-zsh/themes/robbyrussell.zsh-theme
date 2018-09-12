@@ -6,7 +6,7 @@ local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 # ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
 # ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
-PROMPT='[%c]$(git_prompt_info)$(kube_ps1)%{$fg[green]%}$%{$reset_color%} '
+PROMPT='$(kube_ps1)[%c]$(git_prompt_info)%{$fg[green]%}$%{$reset_color%} '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")"
