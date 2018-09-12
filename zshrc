@@ -66,6 +66,7 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
+  kube-ps1
 )
 
 source $ZSH/oh-my-zsh.sh

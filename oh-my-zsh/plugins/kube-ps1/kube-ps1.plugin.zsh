@@ -142,6 +142,7 @@ kube_ps1 () {
   KUBE_PS1+="${cyan}$KUBE_PS1_NAMESPACE${reset_color}"
   KUBE_PS1+="$KUBE_PS1_SUFFIX"
 
-  echo "${KUBE_PS1}"
-
+  if [ $KUBE_PS1_ENABLE ]; then
+      echo "${KUBE_PS1}"
+  fi
 }
