@@ -32,6 +32,8 @@ alias gpull='git pull'
 alias k='kubectl'
 alias g='gcloud'
 
+alias -g G='|grep'
+
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -49,3 +51,5 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias kubeon='export KUBE_PS1_ENABLE=1'
 alias kubeoff='unset KUBE_PS1_ENABLE'
+alias kon='kubeon'
+alias koff='kubeoff'
