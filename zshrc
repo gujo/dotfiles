@@ -67,6 +67,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   kube-ps1
+  extract
 )
 
 source $ZSH/oh-my-zsh.sh
