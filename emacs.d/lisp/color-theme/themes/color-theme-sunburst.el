@@ -9,7 +9,7 @@
       (cursor-color . "yellow")
       (foreground-color . "#ddd")
       (mouse-color . "sienna1"))
-     (default ((t (:background "#111" :foreground "#ddd"))))
+     (default ((t (:background "#000" :foreground "#ddd"))))
      (blue ((t (:foreground "blue"))))
      (bold ((t (:bold t))))
      (bold-italic ((t (:bold t :slant italic))))

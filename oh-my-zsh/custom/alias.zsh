@@ -30,6 +30,8 @@ alias gb='bit branch'
 alias gpull='git pull'
 
 alias k='kubectl'
+alias kd='kubectl describe'
+alias kg='kubectl get'
 alias g='gcloud'
 
 alias -g G='|grep'
