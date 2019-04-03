@@ -35,6 +35,7 @@ alias kg='kubectl get'
 alias g='gcloud'
 
 alias -g G='|grep'
+alias -g Y='|bat -l yaml'
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -55,3 +56,5 @@ alias kubeon='export KUBE_PS1_ENABLE=1'
 alias kubeoff='unset KUBE_PS1_ENABLE'
 alias kon='kubeon'
 alias koff='kubeoff'
+
+alias p='pbpaste'
