@@ -1,14 +1,20 @@
 # If you come from bash you might have to change your $PATH.
+<<<<<<< HEAD
 export PATH=/usr/local/homebrew/bin:$HOME/bin:/usr/local/bin:$PATH
+=======
+export PATH=/Users/johan.gunnarsson/Library/Python/2.7/bin:$PATH
+>>>>>>> f7d473bf0455b7f48c4ac388471b182929c34831
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/$USER/.oh-my-zsh"
 
+export BAT_THEME="zenburn"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
